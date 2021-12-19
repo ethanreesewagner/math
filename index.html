@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Math Game</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   </head>
+   <body style="text-align: center; background-color: lightblue;">
+      <script>var one=0; var two=0; var which=0;</script>
+      <script>
+          function login(){
+            localStorage.setItem('person1',document.getElementById('person1').value); 
+            localStorage.setItem('person2',document.getElementById('person2').value); 
+            document.getElementById('p1').innerHTML=localStorage.getItem('person1')+': '+one; 
+            document.getElementById('p2').innerHTML=localStorage.getItem('person2')+': '+two; 
+            return false;
+          }
+          function submit(){
+            document.getElementById('num1').innerHTML=document.getElementById('in1').value; 
+            document.getElementById('num2').innerHTML=document.getElementById('in2').value; 
+            return false;
+          }
+          function check(){
+              var first=parseFloat(document.getElementById('in1').value);
+              var second=parseFloat(document.getElementById('in2').value);
+              var answer=parseFloat(document.getElementById('answer').value);
+            if(first*second==answer && which==1){
+                one++; 
+                document.getElementById('p1').innerHTML=localStorage.getItem('person1')+': '+one; 
+                which=0;
+            }
+            else if(first*second==answer && which==0){
+                two++; 
+                document.getElementById('p2').innerHTML=localStorage.getItem('person2')+': '+two; 
+                which=1;
+            }
+            else{
+                alert('Wrong answer!');
+            }
+            //clear all input fields
+            document.getElementById('in1').value='';
+            document.getElementById('in2').value='';
+            document.getElementById('answer').value='';
+            return false;
+        }
+      </script>
+      <h1>Login</h1>
+      <input type="text" id="person1" name="person1" placeholder="Person 1"><br>
+      <input type="text" id="person2" name="person2" placeholder="Person 2" style="margin-top: 10px;"><br>
+      <input type="submit" value="Submit" style="margin-top: 10px;" onclick="login()"><br>
+      <h1>
+         <h1 id="p1">1: 0</h1>
+         <h1 id="p2">2: 0</h1>
+         <input type="text" placeholder="number 1" id="in1"> X <input type="text" placeholder="number 2" id="in2">
+         <input type="submit" value="Submit" onclick="submit()">
+         <h1 id="num1"></h1>
+         <h1>X</h1>
+         <h1 id="num2"></h1>
+         <h1>=</h1>
+      </h1>
+      <input placeholder="answer" id="answer"></input> 
+      <input type="submit" value="Submit" onclick="check()"><br><br>
+      <h4>In the game, the first person sends the second person a multiplication problem. The other person answers it. They earn 1 point for getting it correct. If it's wrong, the computer tells you that. Once an answer is given, the players swap roles. This continues on and on until you close this website.</h3>
+      <style>
+              input{
+                border-radius: 10px;
+                border-width: 1px;
+                box-shadow: 0px 0px 10px blueviolet;
+              }
+              #p1{
+                  background-color: lightgreen;
+                border-radius: 10px;
+                border-width: 1px;
+                box-shadow: 0px 0px 10px black;
+                text-align:center;
+              }
+              #p2{
+                background-color: turquoise;
+                border-radius: 10px;
+                border-width: 1px;
+                box-shadow: 0px 0px 10px black;
+              }
+              h4{
+                  margin-left:30px;
+                  margin-right:30px;
+              }
+      </style>
+   </body>
+</html>
